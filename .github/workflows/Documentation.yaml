@@ -1,0 +1,26 @@
+name: Generate JSDocs
+
+on:
+  push:
+    branches:
+      - main  # replace with your default branch if not 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      uses: andstor/jsdoc-action@v1
+      with:
+      source_dir: ./src
+      recurse: true
+      output_dir: ./out
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        publish_dir: ./out
