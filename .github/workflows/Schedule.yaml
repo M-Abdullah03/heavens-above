@@ -1,0 +1,13 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at 00:00 UTC
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate logs
+      run: bash generate_logs.sh

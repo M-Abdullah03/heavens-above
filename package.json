@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node run.js",
     "test": "echo \"Test successful but no test specified\"",
+    "deploy": "echo \"Deploy successful but no deploy specified\"",
     "lint": "eslint .",
     "build": "babel src -d dist"
   },
@@ -18,7 +19,7 @@
     "eslint": "^7.22.0",
     "prettier": "^2.2.1",
     "webpack": "^5.24.3",
-    "globals":"^15.0.0",
+    "globals": "^15.0.0",
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2"
