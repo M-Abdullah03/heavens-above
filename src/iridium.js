@@ -3,8 +3,21 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 const utils = require("./utils");
 
+/**
+ * Array of events related to Iridium flares.
+ * @type {Array}
+ */
 const eventsIridium = ["brightness", "altitude", "azimuth", "satellite", "distanceToFlareCentre", "brightnessAtFlareCentre", "date", "time", "distanceToSatellite", "AngleOffFlareCentre-line", "flareProducingAntenna", "sunAltitude", "angularSeparationFromSun", "image", "id"];
 
+
+/**
+ * Function to get the table of Iridium flares.
+ * @param {Object} config - Configuration object for the function.
+ * @param {Array} config.database - The database to store the Iridium flare data.
+ * @param {number} config.counter - Counter for the number of requests made.
+ * @param {number} config.opt - Option for the request.
+ * @param {string} config.root - Root directory for storing the data.
+ */
 function getTable(config) {
 	let database = config.database || [];
 	let counter = config.counter || 0;
