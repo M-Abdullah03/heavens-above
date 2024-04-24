@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    reviewers:
+      - "M-Abdullah03"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "express"
+        versions: ["4.x"]
