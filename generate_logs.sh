@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Define the directory to store the log files
-log_dir="./logs"
+log_dir="$GITHUB_WORKSPACE/logs"
+
+# Create the directory if it does not exist
+mkdir -p "$log_dir"
 
 # Get the current date and time
 now=$(date +"%m_%d_%Y_%H_%M_%S")
