@@ -1,10 +1,7 @@
 #!/bin/bash
 
 # Define the directory to store the log files
-log_dir="/logs"
-
-# Create the directory if it doesn't exist
-mkdir -p "$log_dir"
+log_dir="./logs"
 
 # Get the current date and time
 now=$(date +"%m_%d_%Y_%H_%M_%S")
