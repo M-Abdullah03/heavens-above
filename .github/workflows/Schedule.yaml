@@ -2,8 +2,8 @@ name: Scheduled Workflow
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at 00:00 UTC
-  workflow_dispatch: # Allows the workflow to be run manually
+    - cron: '0 17 * * 0' # Runs every Sunday at 5 PM UTC
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   maintenance:
@@ -11,4 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Generate logs
-      run: bash generate_logs.sh
+      run: ./generate_logs.sh
+    - name: Upload logs
+      uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: ./logs
