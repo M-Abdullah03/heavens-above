@@ -21,14 +21,16 @@ jobs:
       run: npm install
 
     - name: Run linter
+      id: lint
       run: npm run lint
+
     - name: Add results to request
       uses: actions/github-script@v5
       with:
         script: |
           const issueNumber = context.issue.number;
           let body;
-          if (steps.lint.outcome == 'success') {
+          if (context.job.steps.lint.outcome == 'success') {
             body = 'Your pull request has passed linting.';
           } else {
             body = 'Your pull request has failed linting. Please fix the issues and try again.';
