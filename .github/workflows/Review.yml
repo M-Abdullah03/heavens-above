@@ -1,0 +1,41 @@
+name: Lint Code
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter
+      run: npm run lint
+    - name: Add results to request
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const issueNumber = context.issue.number;
+          let body;
+          if (steps.lint.outcome == 'success') {
+            body = 'Your pull request has passed linting.';
+          } else {
+            body = 'Your pull request has failed linting. Please fix the issues and try again.';
+          }
+          github.rest.issues.createComment({
+            issue_number: issueNumber,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });
